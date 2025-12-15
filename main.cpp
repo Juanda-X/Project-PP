@@ -78,9 +78,6 @@ int main() {
 
     vector<batu> batuan;
 
-    WINDOW *menu_win = newwin(tinggi, lebar, 0, 0);
-    keypad(menu_win, TRUE);
-
     const char *opsi[] = {
         "Mulai",
         "Cara Bermain",
@@ -93,9 +90,18 @@ int main() {
     int pilihan = -1;
 
     while (1) {
+        WINDOW* menu_win = nullptr;
+        delwin(menu_win);
+        menu_win = nullptr;
+        clear();
+        erase();
+        refresh();
+        menu_win = newwin(tinggi, lebar, 0, 0);
+        keypad(menu_win, TRUE);
+
+        werase(menu_win);
         werase(menu_win);
         batas(menu_win, lebar, tinggi);
-
         print_judul(menu_win);
         print_menu(menu_win, pilihanTerpilih, opsi, jumlahOpsi);
 
